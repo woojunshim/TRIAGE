@@ -1,20 +1,23 @@
+### Example script to calculate the discordance score ###
 
-### Example Python script to calculate the discordance score ###
+""" It reads input expression data in the text file format (tab-delimited).
+	Input file is a matrix that defines expression values of genes across 
+	samples where rows are genes and columns are samples.  
+	See 'example_input.txt' for an acceptable input matrix format.
 
-""" It requires input expression data in text file format. 
-    The human repressive tendency score file (repressive_hg19.txt) must be also in the same directory where the script is run.
-
-    Input file is a text file that defines expression values of genes across samples where rows are genes and columns are samples. 
-    For example, see example_input.txt 
+    The repressive tendency score (RTS) file (e.g. human_rts.txt) must be 
+    in the same directory where the script is run. You can use an alternative 
+    RTS file (e.g. mouse_rts_mapped.txt for mouse genes) if you like. Note that
+    the mouse RTS values were obtained by directly mapping genes between human
+    and mouse data. The mouse data only covers protein-coding genes.
 
     Parameters
      -i input file name (required)
      -o output file name (required)
-     -p pesudo-count to be added to the input data, default = 1
-     -l log-transformation of the input data, default = True
-
+     -p pseudo-count to be added to the input data, default = 1
+     -l natural log-transformation of the input data, default = True     
      E.g. >>> python disc.py -i example_input.txt -o output_file.txt 
-        Run the analysis with the human with the log-transformation of the input expression data, with a pseudocount of 1 """
+    """
 
 
 import numpy as np
@@ -23,7 +26,7 @@ from optparse import OptionParser
 
 
 def read_input(filename): 
-    """ reads input files """
+    """ read an input file """
     temp = []
     results = {}        
     file_ = open(filename, 'r')
@@ -32,13 +35,13 @@ def read_input(filename):
         temp.append(line)
     for t1 in temp[1:]:
         results[t1[0]] = {}
-        for idx in range(len(temp[0])):
+        for idx in range(1, len(temp[0])):
             t2 = temp[0][idx]
-            results[t1[0]][t2] = float(t1[idx+1])
+            results[t1[0]][t2] = float(t1[idx])
     return results
 
 def read_ref(filename):
-    """ read repressive tendency score file """
+    """ read a repressive tendency score file """
     results = {}
     file_ = open(filename, 'r')
     for line in file_:
@@ -70,6 +73,7 @@ def calculate_scores(dic1, dic2):
 
 
 def add_pseudo(input_data, count_):    
+	""" add a pseudo-count to the input data """
     for gene_ in input_data:   
         for c in input_data[gene_]:     
             input_data[gene_][c] += float(count_)
@@ -77,7 +81,7 @@ def add_pseudo(input_data, count_):
 
 
 def write_file(input_data, output_file):
-    """ writes out an output as a text file"""
+    """ write out an output as a text file"""
     output_ = open(output_file, 'w')
     rownames = []
     for row in input_data:
@@ -101,7 +105,7 @@ if __name__ == '__main__':
     parser = OptionParser()
     parser.add_option('-i', '--i', dest='input_file', help='input filename')    
     parser.add_option('-o','--o', dest='output_file', help='output filename')
-    parser.add_option('-p', '--p', dest='pseudo', help='pesudo count', default=1)
+    parser.add_option('-p', '--p', dest='pseudo', help='pseudo count', default=1)
     parser.add_option('-l', '--l', dest='log_transform', help='log-transformation (True or False)', default=True)
 
     options = parser.parse_args()[0]  
@@ -115,10 +119,7 @@ if __name__ == '__main__':
         sys.exit('Exiting: Input filename (-i) and output filename (-o) are required.')
     else:        
         exp = read_input(options.input_file)
-        ref = read_ref('repressive_hg19.txt')        
+        ref = read_ref('human_rts.txt')    # Specify a RTS file to be read        
         results = perform_analysis(exp, ref, pseudo_=options.pseudo, log_conversion=options.log_transform)
         
         write_file(results, options.output_file)
-   
-
-
