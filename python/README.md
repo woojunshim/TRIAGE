@@ -1,12 +1,20 @@
 # TRIAGE
 Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
 
-TRIAGE is a method that converts any expression readouts of genes (e.g. RNA-seq quantification, CAGE-seq or H3K36me3 tag density) to a new metric called the discordance score. In essense, the method introduces gene-specific weights to prioritize genes with cell-type specific regulatory function. It's fast and readily scalable to large datasets including multiple single-cell transcriptomes. Current implementation is available as a Python script (version 2.7). 
+disc.py is the main script to run the analysis and human_rts.txt is the human repressive tendency score (RTS) table. These files must be located in the same directory. 
 
-To run the script, first the source code and data file need to be downloaded. You can easily do this by cloning the git repository (git clone https://github.com/woojunshim/TRIAGE.git) 
+First the script reads input expression data in the text file format (tab-delimited).
+Input file is a matrix that defines expression values of genes across samples where rows are genes and columns are samples.  
+See 'example_input.txt' for an acceptable input matrix format.
 
-disc.py is the main script to run the analysis and repressive_hg19.txt is the repressive tendency score (RTS) table. These files must be included in the same directory. 
+The repressive tendency score (RTS) file (e.g. human_rts.txt) must be in the same directory where the script is run. You can use an alternative RTS file (e.g. mouse_rts_mapped.txt for mouse genes) if you like. Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
 
-To run the analysis, simply type, python disc.py -i (your input file) -o (output file), under the terminal. 
+Parameters
+  -i input file name (required)
+  -o output file name (required)
+  -p pseudo-count to be added to the input data, default = 1
+  -l natural log-transformation of the input data, default = True    
+  
+  E.g. >>> python disc.py -i example_input.txt -o output_file.txt 
 
 If any issues are found, please contact to w.shim@uq.edu.au
