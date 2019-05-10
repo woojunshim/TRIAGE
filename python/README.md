@@ -7,7 +7,7 @@ First the script reads input expression data in the text file format (tab-delimi
 Input file is a matrix that defines expression values of genes across samples where rows are genes and columns are samples.  
 See 'example_input.txt' for an acceptable input matrix format.
 
-The repressive tendency score (RTS) file (e.g. human_rts.txt) must be in the same directory where the script is run. You can use an alternative RTS file (e.g. mouse_rts_mapped.txt for mouse genes) if you like. Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
+You can use an alternative RTS file (e.g. mouse_rts_mapped.txt for mouse genes) if you like. Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
 
 Parameters
   -i input file name (required)
