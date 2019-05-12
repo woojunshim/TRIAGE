@@ -5,7 +5,7 @@ TRIAGE is a method that transforms any expression readouts of genes (e.g. RNA-se
 
 To download the source code, clone the git repository. 
 
->>> git clone https://github.com/woojunshim/TRIAGE.git 
+git clone https://github.com/woojunshim/TRIAGE.git 
 
 More information is available under folders.
 
