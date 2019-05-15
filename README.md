@@ -7,7 +7,5 @@ To download the source code, clone the git repository.
 
 git clone https://github.com/woojunshim/TRIAGE.git 
 
-More information is available under folders.
-
 Python script was written by Woo Jun Shim (w.shim@uq.edu.au). 
 R implementation and the web interface were written by Jun Xu (jun.xu@uq.edu.au).
