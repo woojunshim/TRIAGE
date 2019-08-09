@@ -9,7 +9,7 @@ Input expression file is a matrix that defines expression values of genes across
 
 <example_input.txt>
 
-Gene	Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium). 
+	Gene	Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium). 
 
 A1BG	3.065	1.983	4.45. 
 
