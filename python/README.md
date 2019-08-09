@@ -23,8 +23,30 @@ A2ML1	0.002	0.394	0.166.
 ...  
 ...  
 
+The output of TRIAGE is weighted expression readouts (i.e. discordance score) by the gene-specific RTS. 
 
-You can use an alternative RTS table ("mouse_rts_mapped.txt") for mouse datasets. Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
+
+<example_output.txt>. 
+
+	Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium). 
+  
+A1BG	0.008059178900858537	0.006280681756778532	0.009744106976712222. 
+
+A1CF	0.00027847821321769683	0.0	0.0. 
+
+A2M	7.800106276867326e-05	0.0007510159364827811	0.0011384327244910546. 
+
+A2ML1	8.465243140668874e-07	0.00014073863700441038	6.506919860136177e-05. 
+
+
+...
+...
+
+
+
+You may also like to use an alternative RTS table for mouse datasets ("mouse_rts_mapped.txt"). Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
+
+Finally, users can modify pseudo-count (default = 1) or whether to log-transform the expression value (default = True) by specifying parameters.
 
 Parameters
   -i input file name (required)
@@ -32,6 +54,8 @@ Parameters
   -p pseudo-count to be added to the input data, default = 1
   -l natural log-transformation of the input data, default = True    
   
-  E.g. >>> python disc.py -i example_input.txt -o output_file.txt 
+  E.g. >>> python disc.py -i example_input.txt -o example_file.txt 
+  
+  --> Run TRIAGE on "example_input.txt" and output the discordance score as a text file "example_output.txt", with pseudo-count of 1 and natural log-transformation 
 
 If any issues are found, please contact to w.shim@uq.edu.au
