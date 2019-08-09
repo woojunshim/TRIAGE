@@ -5,7 +5,7 @@ We provide an example Python script (written in version 2.7) to calculate the di
 
 "disc.py" is the main script to run the TRIAGE analysis. It requires (i) input expression matrix (e.g. "example_input.txt") and (ii) repressive tendency score (RTS) file (e.g. "human_rts.txt") both of which are plain text files. You can find the both files in the repository. 
 
-Input expression file is a matrix that defines expression values of genes across samples (where rows are genes and columns are samples). See "example_input.txt" below (which is also included in the repository). 
+Input expression file is a matrix that defines expression values of genes across samples (where rows are genes and columns are samples). See "example_input.txt" below (which is also included in the repository). This toy example is RNA-seq data (RPKM normalised) for 3 selected Roadmap samples.  
 
 <example_input.txt>
 
@@ -40,9 +40,9 @@ The output of TRIAGE is weighted expression readouts (i.e. discordance score) by
 
 
 
-You may also like to use an alternative RTS table for mouse datasets ("mouse_rts_mapped.txt"). Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
+You may like to use an alternative RTS table for mouse datasets ("mouse_rts_mapped.txt"). Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
 
-Finally, users can modify pseudo-count (default = 1) or whether to log-transform the expression value (default = True) by specifying parameters.
+Finally, users can modify a pseudo-count (default = 1) or whether to log-transform the expression value (default = True) by specifying parameters.
 
 Parameters
   -i input file name (required)
