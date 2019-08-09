@@ -19,16 +19,14 @@ Input expression file is a matrix that defines expression values of genes across
 
 	A2ML1	0.002	0.394	0.166. 
 
-  
-...  
-...  
+	...
 
 The output of TRIAGE is weighted expression readouts (i.e. discordance score) by the gene-specific RTS. 
 
 
 <example_output.txt>. 
 
-	Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium). 
+		Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium). 
   
 	A1BG	0.008059178900858537	0.006280681756778532	0.009744106976712222. 
 
@@ -38,9 +36,7 @@ The output of TRIAGE is weighted expression readouts (i.e. discordance score) by
 
 	A2ML1	8.465243140668874e-07	0.00014073863700441038	6.506919860136177e-05. 
 
-
-...
-...
+	...
 
 
 
