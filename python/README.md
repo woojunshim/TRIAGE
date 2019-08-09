@@ -45,10 +45,15 @@ You may like to use an alternative RTS table for mouse datasets ("mouse_rts_mapp
 Finally, users can modify a pseudo-count (default = 1) or whether to log-transform the expression value (default = True) by specifying parameters.
 
 Parameters
-  -i input file name (required)
-  -o output file name (required)
-  -p pseudo-count to be added to the input data, default = 1
-  -l natural log-transformation of the input data, default = True    
+
+  -i input file name (required) 
+  
+  -o output file name (required) 
+  
+  -p pseudo-count to be added to the input data, default = 1 
+  
+  -l natural log-transformation of the input data, default = True 
+  
   
   E.g. >>> python disc.py -i example_input.txt -o example_file.txt 
   
