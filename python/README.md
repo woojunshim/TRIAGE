@@ -9,14 +9,14 @@ Input expression file is a matrix that defines expression values of genes across
 
 <example_input.txt>
 
-Gene	Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium)
-A1BG	3.065	1.983	4.45
-A1CF	0.073	0.0	0.0
-A2M	0.402	24.878	137.612
-A2ML1	0.002	0.394	0.166
-
-...
-...
+Gene	Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium). 
+A1BG	3.065	1.983	4.45. 
+A1CF	0.073	0.0	0.0. 
+A2M	0.402	24.878	137.612. 
+A2ML1	0.002	0.394	0.166. 
+  
+...  
+...  
 
 
 You can use an alternative RTS table ("mouse_rts_mapped.txt") for mouse datasets. Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
