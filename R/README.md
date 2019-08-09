@@ -1,10 +1,8 @@
 # ad-hoc RNA analysis platform and cardiac scRNA analysis using TRIAGE
-shiny application for chromatin-weighted RNA expression and clustering analyses
 
 ### How to install:
     1) install R 3.5.0+
     2) install r packages: shiny, scales, zip, dplyr, ggplot2, reshape2, DESeq, FedData
-    3) git clone https://github.com/jon-xu/cera or copy all files to your local folder
 
 ### How to use the tool:
 
