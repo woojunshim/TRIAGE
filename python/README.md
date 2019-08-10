@@ -55,7 +55,7 @@ Parameters
   -l natural log-transformation of the input data, default = True 
   
   
-  E.g. >>> python disc.py -i example_input.txt -o example_file.txt 
+  E.g. >>> python disc.py -i example_input.txt -o example_output.txt 
   
   --> Run TRIAGE on "example_input.txt" and output the discordance score as a text file "example_output.txt", with pseudo-count of 1 and natural log-transformation 
 
