@@ -24,7 +24,7 @@ Input expression file is a matrix that defines expression values of genes across
 The output of TRIAGE is weighted expression readouts (i.e. discordance score) by the gene-specific RTS. 
 
 
-<example_output.txt>. 
+<example_output.txt> 
 
 		Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium) 
   
@@ -38,7 +38,7 @@ The output of TRIAGE is weighted expression readouts (i.e. discordance score) by
 
 	...
 
-Implementation of TRIAGE is fast and highly scalable. Computational time required to analyse the example dataset (18,707 genes * 3 samples) is approximately 0.3 second (run on a personal Mac with 2.2 GHz 16 GB RAM). 
+Implementation of TRIAGE is fast and highly scalable. Computational time required to analyse the example dataset (18,707 genes * 3 samples) is approximately 0.3 second (run on a personal Mac with 2.2 GHz Intel core i7, 16 GB RAM). 
 
 You may like to use an alternative RTS table for mouse datasets ("mouse_rts_mapped.txt"). Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
 
