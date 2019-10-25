@@ -3,7 +3,11 @@ Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
 
 We provide an example Python script to calculate the discordance score of genes given their expression readouts. With simplicity of the TRIAGE implementation, users may also want to write their own codes or simply incorporate TRIAGE as a part of their analysis.
 
-Dependency: numpy. Please install numpy before running the script. 
+Dependency: numpy. Please install numpy before running the script. To check whether numpy has been installed, you can view all installed Python modules in your machine. 
+
+> pip list
+
+To install, numpy
 
 > pip install numpy
 
