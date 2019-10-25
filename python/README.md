@@ -13,7 +13,7 @@ To install, numpy
 
 "disc.py" is the main script to run the TRIAGE analysis. It requires (i) input expression matrix (e.g. "example_input.txt") and (ii) repressive tendency score (RTS) file (e.g. "human_rts.txt") both of which are tab-delimited text files. You can find the both files in the repository. Simply, the script reads in the both files and calculates the discordance score after value conversion (e.g. natural log-transformation) if specified. Please note that the script does NOT normalise the input data. While the normalisation across samples is not a requirement for TRIAGE, if one concerns, this should be done before running the script.
 
-Input expression file is a matrix that defines expression values of genes across samples (where rows are genes and columns are samples). See "example_input.txt" below (which is also included in the repository). The first line should be "column names" to name each column uniquely, with the first column as the gene symbol, and the rest as sample names, as shown below. Included example is RNA-seq data (RPKM normalised) for 3 selected Roadmap samples.  
+Input expression file is a matrix that defines expression values of genes across samples (where rows are genes and columns are samples). See "example_input.txt" below (which is also included in the repository). The first line should be "column names" to name each column uniquely. The first column is the gene symbol while the rest are values for samples, as shown below. Included example is RNA-seq data (RPKM normalised) for 3 selected Roadmap samples.  
 
 <example_input.txt>
 
