@@ -1,7 +1,11 @@
 # TRIAGE
 Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
 
-We provide an example Python script (written in version 2.7) to calculate the discordance score of genes given their expression readouts. With simplicity of the TRIAGE implementation, users may also want to write their own codes or simply incorporate TRIAGE as a part of their analysis.
+We provide an example Python script to calculate the discordance score of genes given their expression readouts. With simplicity of the TRIAGE implementation, users may also want to write their own codes or simply incorporate TRIAGE as a part of their analysis.
+
+Dependency: numpy. Please install numpy before running the script. 
+
+> pip install numpy
 
 "disc.py" is the main script to run the TRIAGE analysis. It requires (i) input expression matrix (e.g. "example_input.txt") and (ii) repressive tendency score (RTS) file (e.g. "human_rts.txt") both of which are tab-delimited text files. You can find the both files in the repository. Simply, the script reads in the both files and calculates the discordance score after value conversion (e.g. natural log-transformation) if specified. Please note that the script does NOT normalise the input data. While the normalisation across samples is not a requirement for TRIAGE, if one concerns, this should be done before running the script.
 
@@ -54,9 +58,13 @@ Parameters
   
   -l natural log-transformation of the input data, default = True 
   
+  -r repressive tendency score file name, default = human_rts.txt
   
-  E.g. >>> python disc.py -i example_input.txt -o example_output.txt 
+  -f filtering of non-priority genes, default = False
   
-  --> Run TRIAGE on "example_input.txt" and output the discordance score as a text file "example_output.txt", with pseudo-count of 1 and natural log-transformation 
+  
+  E.g. >>> python disc.py -i example_input.txt -o example_file.txt -f True
+  
+  --> Run TRIAGE on "example_input.txt" (-i example_input.txt) and output the discordance score (-o example_file.txt) as a text file "example_output.txt", with pseudo-count of 1 and natural log-transformation, using the human RTS table. Only output priority genes (-f True). 
 
 If any issues are found, please contact to w.shim@uq.edu.au
