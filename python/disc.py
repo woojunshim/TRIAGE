@@ -152,9 +152,9 @@ def extract_column_from_table_as_list(input_table, col, threshold=0):
 def order_list(input_list, col, reverse = False):
     return sorted(input_list, key=lambda x: x[col], reverse=reverse)
 
-def check_table(filename, numeric=True):
+def check_table(filename):
     if type(filename)==str:
-        filename = read_input(filename, numeric=numeric)
+        filename = read_input(filename)
     return filename
 
 def convert_dic_to_list(input_data):
