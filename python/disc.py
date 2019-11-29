@@ -121,28 +121,6 @@ def read_file_as_list(filename, col=None, numeric_col=None):
                     results[-1].extend([value])
     return results
 
-def read_file_as_dic(filename, col=None):    
-    results = {}
-    temp = open(filename, 'r')
-    for i in temp:
-        i = i.strip().split()
-        if i[0].startswith('#'):
-            continue
-        else:
-            if i[0] not in results:
-                results[i[0]] = []
-            results[i[0]].append([])
-            if col==None:
-                for c in i[1:]:
-                    results[i[0]][-1].extend([c])
-            else:
-                if len(col) > 1:
-                    for c in col:
-                        results[i[0]][-1].extend([i[c]])
-                elif len(col) == 1:
-                    results[i[0]] = float(i[col[0]])
-    return results
-
 def extract_column_from_table_as_dic(input_table, col, threshold=None):
     input_table = check_table(input_table)
     result = {}
@@ -168,7 +146,7 @@ def check_table(filename, numeric=True):
     return filename
 
 def convert_dic_to_list(input_data):
-    ''' returns a list of lists (each with a key and an associated value) '''
+    """ returns a list of lists (each with a key and an associated value) """
     results = [[g, input_data[g]] for g in input_data]
 
 def perform_analysis(exp, ref, pseudo_=1, log_conversion=True, priority=False):  
@@ -203,7 +181,7 @@ def calculate_scores(dic1, dic2, priority):
     return results
 
 def calculate_bin_rts(input_data, n=100):
-    ''' calculate average RTS for a set of consecutive genes. The bin size = n '''
+    """ calculate average RTS for a set of consecutive genes. The bin size = n """
     values = [input_data[i][1] for i in range(n)]
     results = [np.mean(values)]
     total = len(input_data)-n+1
@@ -214,13 +192,13 @@ def calculate_bin_rts(input_data, n=100):
     return results
 
 def find_closest_bin(input_data, value):
-    ''' calculates absolute difference between a value and each bin rts
-        returns an index '''
+    """ calculates absolute difference between a value and each bin rts
+        returns an index """
     dist = [np.abs(value-v) for v in input_data]
     return dist.index(np.min(dist))
 
 def generate_permutations(input_data, iterations=10000):
-    ''' permutes values of input '''
+    """ permutes values of input """
     results = []
     total = len(input_data)
     idx = [i for i in range(total)]
@@ -230,7 +208,7 @@ def generate_permutations(input_data, iterations=10000):
     return results  
 
 def calculate_empirical_p(input_data, value, idx=None):
-    ''' returns an empirical p-value (one-sided) given a value '''
+    """ returns an empirical p-value (one-sided) given a value """
     if idx == None:
         idx = random.randint(0, len(input_data[0])-1)
     cnt = [1 for i in range(len(input_data)) if input_data[i][idx] > value]
