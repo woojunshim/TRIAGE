@@ -79,3 +79,5 @@ Parameters
   --> Run TRIAGE on "example_input.txt" (-i example_input.txt) and output the discordance score as a text file "example_output.txt" (-o example_file.txt), with pseudo-count of 1 and natural log-transformation, using the human RTS table. Only output priority genes (-f True). 
 
 If any issues are found, please contact to w.shim@uq.edu.au
+
+
