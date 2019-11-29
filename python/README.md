@@ -66,6 +66,13 @@ Parameters
   
   -f filtering of non-priority genes, default = False
   
+  -s number of top genes for the statistical output, default = 0 (i.e. no stat output)
+  
+  -b bin size by the number of genes, default = 100 
+  
+  -u number of permutations, default = 10000
+  
+  
   
   E.g. >>> python disc.py -i example_input.txt -o example_file.txt -f True
   
