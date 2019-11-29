@@ -45,12 +45,24 @@
 # Finally, users can modify a pseudo-count (default = 1) or whether to log-transform the expression value (default = True) by specifying parameters.
 
 # Parameters
-#   -i input file name (required)
-#   -o output file name (required)
-#   -p pseudo-count to be added to the input data, default = 1
-#   -l natural log-transformation of the input data, default = True    
-#   -r repressive tendency score file name, default = human_rts.txt
-#   -f filtering of non-priority genes, default = False
+  # -i input file name (required) 
+  
+  # -o output file name (required) 
+  
+  # -p pseudo-count to be added to the input data, default = 1 
+  
+  # -l natural log-transformation of the input data, default = True 
+  
+  # -r repressive tendency score file name, default = human_rts.txt
+  
+  # -f filtering of non-priority genes, default = False
+  
+  # -s number of top genes for the statistical output, default = 0 (i.e. no stat output)
+  
+  # -b bin size by the number of genes, default = 100 (only required for stat output)
+  
+  # -u number of permutations, default = 10000 (only required for stat output)
+  
   
 #   E.g. >>> python disc.py -i example_input.txt -o example_file.txt -f True
   

@@ -68,9 +68,9 @@ Parameters
   
   -s number of top genes for the statistical output, default = 0 (i.e. no stat output)
   
-  -b bin size by the number of genes, default = 100 
+  -b bin size by the number of genes, default = 100 (only required for stat output)
   
-  -u number of permutations, default = 10000
+  -u number of permutations, default = 10000 (only required for stat output)
   
   
   
