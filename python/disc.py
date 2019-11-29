@@ -157,10 +157,6 @@ def check_table(filename):
         filename = read_input(filename)
     return filename
 
-def convert_dic_to_list(input_data):
-    """ returns a list of lists (each with a key and an associated value) """
-    results = [[g, input_data[g]] for g in input_data]
-
 def perform_analysis(exp, ref, pseudo_=1, log_conversion=True, priority=False):  
     """ main function to calcualte the discordance score """    
     if pseudo_!=None:
