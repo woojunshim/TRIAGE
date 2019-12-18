@@ -13,7 +13,7 @@ TRIAGE is fast and highly scalable to a large number of datasets. For instance, 
 
 To download the source code, clone the git repository. 
 
-> git clone `https://github.com/woojunshim/TRIAGE.git` 
+	> git clone `https://github.com/woojunshim/TRIAGE.git` 
 
 ### 3. Python implementation
 
@@ -21,11 +21,11 @@ We provide an example Python script to calculate the discordance score of genes 
 
 Dependency: numpy, scipy. Please install the both before running the script. To check whether these have been installed, you can view all installed Python modules in your machine. 
 
-> pip list
+	> pip list
 
 To install a module (e.g. numpy)
 
-> pip install numpy
+	> pip install numpy
 
 "disc.py" is the main script to run the TRIAGE analysis. It requires (i) input expression matrix (e.g. "example_input.txt") and (ii) repressive tendency score (RTS) file (e.g. "human_rts.txt") both of which are tab-delimited text files. You can find the both files in this repository. Simply, the script reads in the both files and calculates the discordance score after value conversion (e.g. natural log-transformation) if specified. Please note that the script does NOT normalise the input data. While the normalisation across samples is not a requirement for TRIAGE, if one concerns, this should be done before running the script.
 
@@ -90,7 +90,7 @@ Parameters
   
   
   
-  E.g. >>> python disc.py -i input.txt -o output.txt -f True
+  	E.g. > python disc.py -i input.txt -o output.txt -f True
   
   --> Run TRIAGE on "input.txt" and output the discordance score as a text file "output.txt", with pseudo-count of 1 and natural log-transformation, using the human RTS table. Only output priority genes (-f True). 
 
