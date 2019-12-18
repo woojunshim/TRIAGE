@@ -13,7 +13,7 @@ TRIAGE is fast and highly scalable to a large number of datasets. For instance, 
 
 To download the source code, clone the git repository. 
 
-	> git clone `https://github.com/woojunshim/TRIAGE.git` 
+	> git clone https://github.com/woojunshim/TRIAGE.git 
 
 ### 3. Python implementation
 
