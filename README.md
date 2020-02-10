@@ -100,7 +100,7 @@ Parameters
   
 ### 4. Q & A 
 
-1. I have a trouble with the input text file. Does it accept CSV file as the input? 
+#### I have a trouble with the input text file. Does it accept CSV file as the input? 
 
 Answer: Please make sure that the text file is tab-delimited with headers in the first line and the gene symbol in the first column (See Python implementation). Current Python script only accepts a tab-delimited text file as the input. 
 
