@@ -70,32 +70,44 @@ Finally, users can modify a pseudo-count (default = 1) or whether to log-transfo
 
 Parameters
 
-  -i input file name (required) 
+  -i input file name (required) ; input expression table file 
   
-  -o output file name (required) 
+  -o output file name (required) ; output discordance score table file
   
-  -p pseudo-count to be added to the input data, default = 1 
+  -p pseudo-count to be added to the input expresion data, default = 1 ; added to to avoid a negative output for log-transformation
   
-  -l natural log-transformation of the input data, default = True 
+  -l natural log-transformation of the input expression data, default = True 
   
-  -r repressive tendency score file name, default = human_rts.txt
+  -r repressive tendency score file name, default = human_rts.txt ; specify this to use an alternative RTS file
   
-  -f filtering of non-priority genes, default = False
+  -f filtering of non-priority genes, default = False ; True if like to consider only the 1,359 prioirty genes
   
-  -s number of top genes for the statistical output, default = 0 (i.e. no stat output)
+  -s number of top genes for the statistical output, default = 0 (i.e. no stat output) ; if set non-zero, a statistical test is performed for each gene
   
-  -b bin size by the number of genes, default = 100 (only required for stat output)
+  -b bin size by the number of genes, default = 100 (only required for stat output) ; number of genes in a bin assumed to have similar RTS or experssion values, used to form the basis for the statistical background by permutations. 
   
-  -u number of permutations, default = 10000 (only required for stat output)
+  -u number of permutations, default = 10000 (only required for stat output) ; number of permutations to generate a distribution from a set of genes sharing similar RTS or expression values
   
   
   
-  	E.g. > python disc.py -i input.txt -o output.txt -f True
+  	Example1 > python3 disc.py -i input.txt -o output.txt -f True
   
   --> Run TRIAGE on "input.txt" and output the discordance score as a text file "output.txt", with pseudo-count of 1 and natural log-transformation, using the human RTS table. Only output priority genes (-f True). 
+  
+  	Example2 > python3 disc.py -i input.txt -o output.txt -r mouse_rts_mapped.txt -s 100 
+
+  --> Run TRIAGE as above except (i) focus on all expressed genes in the input data, (ii) use a RTS for mouse genes, (iii) perform a permutation test for the statistical significance for top 100 genes by the discordance score.
+  
+### 4. Q & A 
+
+1. I have a trouble with the input text file. Does it accept CSV file as the input? 
+
+Answer: Please make sure that the text file is tab-delimited with headers in the first line and the gene symbol in the first column (See Python implementation). Current Python script only accepts a tab-delimited text file as the input. 
+
+ 	
 
 
-### 4. R implementation
+### 5. R implementation
 
 #### How to install:
     1) install R 3.5.0+
@@ -118,7 +130,7 @@ Parameters
    *c) You need to navigate through tabs before downloading results (for adhoc tool)*
 
 
-### 5. Contact
+### 6. Contact
 
 If any issues are found, please contact Woo Jun Shim (w.shim@uq.edu.au) for Python or Jun Xu (jun.xu@uq.edu.au) for R scripts. 
 
