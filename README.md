@@ -48,7 +48,7 @@ Input expression file is a matrix that defines expression values of genes across
 The output of TRIAGE is the discordance score. 
 
 
-<example_output.txt> 
+<example_output.txt> without statistical significance
 
 		Blood(T_helper_naive_cells)	Brain(Germinal_Matrix)	Heart(Right_Atrium) 
   
@@ -62,7 +62,20 @@ The output of TRIAGE is the discordance score.
 
 	...
 
-Implementation of TRIAGE is fast and highly scalable. Computational time required to analyse the example dataset (18,707 genes * 3 samples) is approximately 0.3 second (run on a personal Mac with 2.2 GHz Intel core i7, 16 GB RAM). 
+Implementation of TRIAGE is fast and highly scalable. Computational time required to analyse the example dataset (18,707 genes * 3 samples) is approximately 0.3 second (run on a personal Mac with 2.2 GHz Intel core i7, 16 GB RAM) while calculating statistical significance of the output using permutations of gene sets can make the process time a bit longer.   
+
+<example_output_with_stats.txt> with statistical significance 
+
+	gene	sample	DS	RTS	bin_RTS	exp	bin_exp	empirical_p
+	GATA3	Blood(T_helper_naive_cells)	1.3578628377351423	0.411389191877	0.28169585811599	1.4587724488089115	0.1982595498010346	9.999000099990002e-05
+	C5orf66	Blood(T_helper_naive_cells)	1.291616660835923	0.413532020435	0.28169585811599	1.4166726399719585	0.1982595498010346	0.0081991800819918
+	RNF220	Blood(T_helper_naive_cells)	0.8591534166072028	0.304303781201	0.28169585811599	1.3411247118965588	0.1982595498010346	0.016998300169983
+	SKAP1	Blood(T_helper_naive_cells)	0.7827861442542637	0.167125101138	0.16737537235475997	1.737625913741511	0.31193496530486003	9.999000099990002e-05
+	BUB3	Blood(T_helper_naive_cells)	0.7061733376492781	0.166889678231	0.16737537235475997	1.6546747516504323	0.31193496530486003	0.019998000199980003
+	
+	...
+	
+Note. bin_RTS and bin_exp are average values of RTSs and expressions of genes in the gene bin (default size = 100 genes) which defines a gene set "closest" to a given gene by expression or RTS values respectively. Empirical p-value is a combined p-value (using Fisher's method based on Chi-square distribution, https://en.wikipedia.org/wiki/Fisher%27s_method) from two separate statistical tests (for RTS and expression values of the given gene, to give probabilities of observing such values by chance, given empirical distributions of the test statistics from "similar" genes by generating a number of permutations (default = 10,000 times).    
 
 You may want to use an alternative RTS table for a different species (e.g. "mouse_rts_mapped.txt" for mouse). Note that the mouse RTS values were obtained by directly mapping genes between human and mouse data. The mouse data currently only covers protein-coding genes.
 
