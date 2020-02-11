@@ -67,6 +67,7 @@ Implementation of TRIAGE is fast and highly scalable. Computational time require
 <example_output_with_stats.txt> with statistical significance 
 
 	gene	sample	DS	RTS	bin_RTS	exp	bin_exp	empirical_p
+	
 	GATA3	Blood(T_helper_naive_cells)	1.3578628377351423	0.411389191877	0.28169585811599	1.4587724488089115	0.1982595498010346	9.999000099990002e-05
 	
 	C5orf66	Blood(T_helper_naive_cells)	1.291616660835923	0.413532020435	0.28169585811599	1.4166726399719585	0.1982595498010346	0.0081991800819918
