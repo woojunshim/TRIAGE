@@ -116,16 +116,8 @@ Parameters
 
   --> Run TRIAGE as above except (i) focus on all expressed genes in the input data, (ii) use a RTS for mouse genes, (iii) perform a permutation test for the statistical significance for top 100 genes by the discordance score.
   
-### 4. Q & A 
 
-#### My input file causea an error. Does it accept CSV file as the input? 
-
-Answer: Please make sure that the text file is tab-delimited with headers in the first line and the gene symbol in the first column (See Python implementation). Current Python script only accepts a tab-delimited text file as the input. 
-
- 	
-
-
-### 5. R implementation
+### 4. R implementation
 
 #### How to install:
     1) install R 3.5.0+
@@ -148,7 +140,7 @@ Answer: Please make sure that the text file is tab-delimited with headers in the
    *c) You need to navigate through tabs before downloading results (for adhoc tool)*
 
 
-### 6. Contact
+### 5. Contact
 
 If any issues are found, please contact Woo Jun Shim (w.shim@uq.edu.au) for Python or Jun Xu (jun.xu@uq.edu.au) for R scripts. 
 
