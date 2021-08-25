@@ -1,4 +1,4 @@
-# TRIAGE
+# TRIAGE 
 # Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
 
 # We provide an example Python script (can be run on version 2 and 3) to calculate the discordance score of genes given their expression readouts. With simplicity of the TRIAGE implementation, users may also want to write their own codes or simply incorporate TRIAGE as a part of their analysis.
