@@ -45,24 +45,12 @@
 # Finally, users can modify a pseudo-count (default = 1) or whether to log-transform the expression value (default = True) by specifying parameters.
 
 # Parameters
-  # -i input file name (required) 
-  
-  # -o output file name (required) 
-  
-  # -p pseudo-count to be added to the input data, default = 1 
-  
-  # -l natural log-transformation of the input data, default = True 
-  
-  # -r repressive tendency score file name, default = human_rts.txt
-  
-  # -f filtering of non-priority genes, default = False
-  
-  # -s number of top genes for the statistical output, default = 0 (i.e. no stat output)
-  
-  # -b bin size by the number of genes, default = 100 (only required for stat output)
-  
-  # -u number of permutations, default = 10000 (only required for stat output)
-  
+#   -i input file name (required)
+#   -o output file name (required)
+#   -p pseudo-count to be added to the input data, default = 1
+#   -l natural log-transformation of the input data, default = True    
+#   -r repressive tendency score file name, default = human_rts.txt
+#   -f filtering of non-priority genes, default = False
   
 #   E.g. >>> python disc.py -i example_input.txt -o example_file.txt -f True
   
@@ -73,10 +61,9 @@
 
 import numpy as np
 import sys
-import random
 from optparse import OptionParser
+import random
 from random import shuffle
-from scipy import stats
 
 def read_input(filename): 
     """ read an input file """
@@ -86,6 +73,12 @@ def read_input(filename):
     for line in file_:
         line = line.strip().split()            
         temp.append(line)
+
+    # To ensure every line of the input file has the same no. of elements
+    # Assuming that the first line represents sample names,
+    if len(temp[0])+1 == len(temp[1]):
+        temp[0].insert(0, 'gene_name')  # It's just a gap filler    
+
     for t1 in temp[1:]:
         results[t1[0]] = {}
         for idx in range(1, len(temp[0])):
@@ -153,10 +146,14 @@ def extract_column_from_table_as_list(input_table, col, threshold=0):
 def order_list(input_list, col, reverse = False):
     return sorted(input_list, key=lambda x: x[col], reverse=reverse)
 
-def check_table(filename):
+def check_table(filename, numeric=True):
     if type(filename)==str:
-        filename = read_input(filename)
+        filename = read_input(filename, numeric=numeric)
     return filename
+
+def convert_dic_to_list(input_data):
+    """ returns a list of lists (each with a key and an associated value) """
+    results = [[g, input_data[g]] for g in input_data]
 
 def perform_analysis(exp, ref, pseudo_=1, log_conversion=True, priority=False):  
     """ main function to calcualte the discordance score """    
@@ -189,15 +186,15 @@ def calculate_scores(dic1, dic2, priority):
                     results[g][c] = dic1[g][c] * dic2[g]
     return results
 
-def calculate_bin(input_data, n=100):
-    """ calculate average RTS for a set of consecutive genes. The bin size = n """ 
-    values = [input_data[i] for i in range(n)]
+def calculate_bin_rts(input_data, n=100):
+    """ calculate average RTS for a set of consecutive genes. The bin size = n """
+    values = [input_data[i][1] for i in range(n)]
     results = [np.mean(values)]
-    total = len(input_data)-n+1    
-    for i in range(1, total-1):
-        values.append(input_data[i+n])
+    total = len(input_data)-n+1
+    for i in range(1, total-n+1):
+        values.append(input_data[i+1][1])
         values.pop(0)
-        results.append(np.mean(values))
+        results.append(np.mean(values))   
     return results
 
 def find_closest_bin(input_data, value):
@@ -222,11 +219,6 @@ def calculate_empirical_p(input_data, value, idx=None):
         idx = random.randint(0, len(input_data[0])-1)
     cnt = [1 for i in range(len(input_data)) if input_data[i][idx] > value]
     return (np.sum(cnt)+1) / (len(input_data)+1)
-
-def combine_p(input_data):
-	""" combine p-values from independent tests using Fisher's combined probability test method
-	(https://en.wikipedia.org/wiki/Fisher%27s_method) """
-	return stats.combine_pvalues(input_data)[1]
 
 def add_pseudo(input_data, count_):
     """ add a pseudo-count to the input data """
@@ -271,14 +263,14 @@ if __name__ == '__main__':
     parser.add_option('-i', '--i', dest='input_file', help='input filename')    
     parser.add_option('-o','--o', dest='output_file', help='output filename')
     parser.add_option('-p', '--p', dest='pseudo', help='pseudo count', default=1)
-    parser.add_option('-l', '--l', dest='log_transform', help='log-transformation (True or False)', default=True)
+    parser.add_option('-l', '--l', dest='log_transform', help='log-transformation (set to 1 or 0 for yes/no)', default=1, type=int)
     parser.add_option('-r', '--r', dest='ref_file', help='repressive tendency score (RTS) filename', default='human_rts.txt')
-    parser.add_option('-f', '--f', dest='priority_focus', help='filtering: whether to output ONLY priority genes', default=False)
+    parser.add_option('-f', '--f', dest='priority_focus', help='filtering: whether to output ONLY priority genes (set to 1 or 0 for yes/no)', default=0, type=int)
     parser.add_option('-s', '--s', dest='stats', help='Number of top genes for the statistical output', default=0)
     parser.add_option('-b', '--b', dest='bin_size', help='Bin size by the number of genes', default=100)
     parser.add_option('-u', '--u', dest='no_permutation', help='Number of permutations', default=10000)
 
-    options = parser.parse_args()[0]  
+    options = parser.parse_args()[0] 
 
     options.log_transform = bool(options.log_transform)
     options.priority_focus = bool(options.priority_focus)
@@ -299,32 +291,23 @@ if __name__ == '__main__':
             write_file(results, options.output_file)
         else:  # Permutation of expression values
             cols = get_colnames(results)            
-            rts = order_list([[i[0], i[1]] for i in read_file_as_list(options.ref_file, col=[0,1], numeric_col=[1])], col=1, reverse=True)           
-            output_ = [['#gene','sample','DS','Expression','RTS','p_exp','p_rts','p_combined']]
-            for col in cols:
-                print (col)
-                exp_ref = extract_column_from_table_as_dic(exp, col=col, threshold=0)   
-                exp_list = order_list([[g, exp_ref[g]] for g in exp_ref if g in ref], col=1, reverse=True)          
-                rts_list = order_list([[g, ref[g]] for g in exp_ref if g in ref], col=1, reverse=True)                     
-                genes = order_list([[i[0], results[i[0]][col]] for i in rts_list], col=1, reverse=True)[:options.stats]
-                bin_rts = calculate_bin([i[1] for i in rts_list], n=options.bin_size)
-                bin_exp = calculate_bin([i[1] for i in exp_list], n=options.bin_size)
-                gene_bin_no_rts = [find_closest_bin(bin_rts, ref[i[0]]) for i in genes]
-                gene_bin_no_exp = [find_closest_bin(bin_exp, exp_ref[i[0]]) for i in genes]
+            ref_list = read_file_as_list(options.ref_file, col=[0,1], numeric_col=[1])
+            output_ = [['#gene','sample','DS','RTS','bin_RTS','exp','bin_exp','empirical_p']]
+            for col in cols:            	
+                exp_sample = extract_column_from_table_as_dic(exp, col=col, threshold=0)
+                dis_sample = extract_column_from_table_as_list(results, col=col, threshold=0)                
+                dis_sample = order_list(dis_sample, col=1, reverse=True)                
+                genes = [i[0] for i in dis_sample[:options.stats]]                
+                temp = [i for i in order_list(ref_list, col=1, reverse=True) if i[0] in exp_sample]                
+                bin_rts = calculate_bin_rts(temp, n=options.bin_size)
+                gene_bin_no = [find_closest_bin(bin_rts, float(ref[i[0]])) for i in dis_sample[:options.stats]]          
                 for j in range(len(genes)):
-                    gene = genes[j][0]                    
-
-                    idx1 = gene_bin_no_rts[j]
-                    exp_set = [exp_ref[rts_list[i][0]] for i in range(idx1, idx1+options.bin_size)]
-                    perm_data = generate_permutations(exp_set, iterations=options.no_permutation)                             
-                    p_exp = calculate_empirical_p(perm_data, exp_ref[gene], idx=None)                    
-
-                    idx2 = gene_bin_no_exp[j]
-                    rts_set = [ref[exp_list[i][0]] for i in range(idx2, idx2+options.bin_size)]
-                    perm_data = generate_permutations(rts_set, iterations=options.no_permutation)
-                    p_rts = calculate_empirical_p(perm_data, ref[gene], idx=None) 
-
-                    output_.append([gene, col, genes[j][1], exp_ref[gene], ref[gene], p_exp, p_rts, combine_p([p_exp, p_rts])])
+                    gene = genes[j]
+                    idx = gene_bin_no[j]
+                    exp_set = [np.log(exp_sample[temp[i][0]]+1) for i in range(idx, idx+options.bin_size)]
+                    perm_data = generate_permutations(exp_set, iterations=options.no_permutation)
+                    p = calculate_empirical_p(perm_data, np.log(exp_sample[gene]+1), idx=None)
+                    output_.append([gene, col, dis_sample[j][1], ref[gene], bin_rts[idx], np.log(exp_sample[gene]+1), np.mean(exp_set), p])
             write_file(output_, options.output_file)
 
         
