@@ -119,6 +119,8 @@ Parameters
 
 ### 4. R implementation
 
+To access the web interface, http://bioinf.scmb.uq.edu.au/adhoc/
+
 #### How to install:
     1) install R 3.5.0+
     2) install r packages: shiny, scales, zip, dplyr, ggplot2, reshape2, DESeq, FedData
