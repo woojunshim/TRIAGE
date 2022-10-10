@@ -146,3 +146,9 @@ To access the web interface, http://bioinf.scmb.uq.edu.au/adhoc/
 
 If any issues are found, please contact Woo Jun Shim (w.shim@uq.edu.au) for Python or Jun Xu (jun.xu@uq.edu.au) for R scripts. 
 
+
+### 6. Citation
+
+Conserved Epigenetic Regulatory Logic Infers Genes Governing Cell Identity. Cell Systems (2020)
+(https://www.sciencedirect.com/science/article/pii/S2405471220304191)
+
