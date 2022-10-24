@@ -94,11 +94,11 @@ Parameters
   
   -p pseudo-count to be added to the input expresion data, default = 1 ; added to to avoid a negative output for log-transformation
   
-  -l natural log-transformation of the input expression data, default = True 
+  -l natural log-transformation of the input expression data, default = 1 (True), vs 0 (False) 
   
   -r repressive tendency score file name, default = human_rts.txt ; specify this to use an alternative RTS file
   
-  -f filtering of non-priority genes, default = False ; True if like to consider only the 1,359 prioirty genes
+  -f filtering of non-priority genes, default = 0 (False) ; 1 (True) if like to consider only the 1,359 prioirty genes
   
   -s number of top genes for the statistical output, default = 0 (i.e. no stat output) ; if set non-zero, a statistical test is performed for each gene
   
