@@ -286,7 +286,7 @@ if __name__ == '__main__':
         if options.priority_focus == True:
             temp = read_ref(options.ref_file, col=2, numeric=False)
             priority_genes = set([i for i in temp if temp[i]=='Y'])
-        results = perform_analysis(exp, ref, pseudo_=options.pseudo, log_conversion=options.log_transform, priority=options.priority_focus)   
+        results = perform_analysis(exp, ref, pseudo_=options.pseudo, log_conversion=options.log_transform, priority=options.priority_focus) 
         if options.stats == 0:  # No statistics
             write_file(results, options.output_file)
         else:  # Permutation of expression values
