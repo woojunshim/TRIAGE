@@ -1,6 +1,6 @@
 ## Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
 
-![GitHub release (by tag)](https://img.shields.io/github/downloads/woojunshim/TRIAGE/v1.0.0/total)
+![GitHub all releases](https://img.shields.io/github/downloads/woojunshim/TRIAGE/total)
 
 ### 1. Introduction
 
