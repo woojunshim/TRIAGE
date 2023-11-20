@@ -1,6 +1,6 @@
-## Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
+# Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
 
-For downloading, please refer to [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10162351.svg)](https://doi.org/10.5281/zenodo.10162351) 
+## For downloading, please refer to [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10162351.svg)](https://doi.org/10.5281/zenodo.10162351) 
 
 ### 1. Introduction
 
