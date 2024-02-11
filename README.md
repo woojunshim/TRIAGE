@@ -1,7 +1,5 @@
 # Transcriptional Regulatory Inference Analysis from Gene Expression (TRIAGE)
 
-## For downloading, please refer to [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10162351.svg)](https://doi.org/10.5281/zenodo.10162351) 
-
 ### 1. Introduction
 
 TRIAGE is a simple computational method that transforms any expression readouts of genes (e.g. RNA-seq, CAGE-seq or H3K36me3 tag density) into a new metric called the discordance score. In essense, the method introduces gene-specific weights, which indicate degree of association with broad H3K27me3 domains observed across diverse tissue and cell types, to prioritize genes with cell-type specific regulatory function. TRIAGE only requires the gene expression readout as the input. It does not require ChIP-seq data for the cell-type of interest or any external reference points for the analysis. 
